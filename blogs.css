@@ -1,5 +1,18 @@
 body,html{
-    padding-top: 50px;
+    /* padding-top: 50px; */
+    height: 100%;
+    width: 100%;
+}
+#main-content{
+    padding-top: 45px;
+    background: linear-gradient(to bottom, rgb(216, 216, 239),#fff);
+    height: 100%;
+    width: 100%;
+}
+.blog-card{
+    background-color: #fff;
+}
+.blog-card img{
     height: 100%;
     width: 100%;
 }

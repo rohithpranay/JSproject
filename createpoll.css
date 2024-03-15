@@ -1,0 +1,275 @@
+/* Default styles */
+body,html{
+    width: 100%;
+    height: 100%;
+    background-color:  rgb(231, 231, 244);
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    padding-top: 8rem;
+}
+
+#img img{
+    height: 8rem;
+    padding: 1rem;
+}
+
+#create-poll-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-content{   
+    width: 100%;
+    display: flex;
+}
+
+#main-content h1{
+    padding: 1rem;
+    font-size: 2.7rem;
+    color: #3F55AC;
+}
+
+#main-content p{
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: rgb(75, 75, 75);
+}
+
+#poll-type{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    color: #000;
+    border: 1px dashed #474646;
+    border-radius: 1rem;
+    gap: 17px;
+}
+
+#create-poll{
+    background-color: #fff;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 2rem;
+}
+
+#question {
+    height: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: rgb(75, 75, 75);
+}
+
+fieldset {
+    border: none;
+    padding: 0; 
+}
+
+#questn fieldset {
+    margin: 20px 0;
+    height: auto;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+#questn legend {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.4rem;
+    padding: 1rem 0;
+}
+
+textarea {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    outline: #3F55AC;
+    resize: none;
+}
+
+.poll_input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.poll_input label{
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.input-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    /* background-color: red; */
+    justify-content: space-evenly;
+}
+
+#option1,#option2{
+    padding: 1rem;
+    /* margin-left: -4.3rem; */
+    font-size: 1.8rem;
+    color: rgb(75, 75, 75);
+    border-radius: 1rem;
+}
+
+.ri-close-fill {
+    font-size: 2.8rem;
+    /* margin-left: 5px; */
+    color: #666;
+}
+
+#new-option{
+    font-size:1.4rem ;
+    padding: 1rem;
+    color: #666;
+    width: 100%;
+    text-align: end;
+}
+
+#description textarea{
+    height: 10rem;
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
+#description textarea::placeholder{
+    font-size: 1.8rem;
+}
+#formBtns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.form-btns {
+    padding:  2rem 3rem;
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    font-weight: 900;
+    background-color: #3F55AC;
+    color: #fff;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+}
+
+.disabled {
+    padding:  2rem 3rem;
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
+    background-color: #ccc; 
+    color: #888; 
+}
+
+#footer {
+    height: 40rem;
+    width: 100%;
+}
+
+
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Adjustments for tablets */
+    #main-content {
+        width: 80%;
+    }
+    #main-content img {
+        height: 10rem;
+        padding: 1rem;
+    }
+    #main-content h1 {
+        font-size: 2.5rem;
+    }
+    #main-content p {
+        font-size: 1.4rem;
+    }
+    #form {
+        width: 80%;
+        padding: 2rem;
+    }
+    #poll-type {
+        width: 80%;
+        padding: 2rem 3rem;
+        margin: 2rem 1rem;
+    }
+    #questn fieldset {
+        height: 10rem;
+    }
+    #new-option {
+        font-size: 1.4rem;
+        padding: 0.5rem;
+        width: 100%;
+        margin: 1rem 0;
+    }
+    .input-container input {
+        padding: 2rem;
+        width: 90%;
+    }
+    #description textarea {
+        font-size: 1.5rem;
+    }
+}
+
+/* Desktops and Laptops */
+@media only screen and (min-width: 1025px) {
+    /* Adjustments for desktops and laptops */
+    #main-content {
+        width: 50%;
+        flex-direction: row;
+    }
+    #main-content img {
+        height: 15rem;
+        padding: 1rem;
+    }
+    #main-content h1 {
+        font-size: 3rem;
+    }
+    #main-content p {
+        font-size: 1.6rem;
+    }
+    #form {
+        width: 50%;
+        padding: 3rem;
+    }
+    #poll-type {
+        width: 90%;
+        padding: 2rem;
+        margin: 3rem 1rem;
+    }
+    #questn fieldset {
+        height: 13rem;
+    }
+    #new-option {
+        font-size: 1.6rem;
+        color: #666;
+        padding: 0.5rem;
+        width: 90%;
+        margin: 2rem 1rem;
+    }
+    .input-container input {
+        width: 85%;
+        padding: 3rem;
+    }
+    #description textarea {
+        font-size: 1.1rem;
+    }
+}
