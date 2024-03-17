@@ -128,8 +128,9 @@ body,html{
         font-weight: 700;
         padding: 1rem 0;
     }
-    #opts{
-        /* height: 30%; */
+    .opts{
+        padding: 3rem;
+        height: 20%;
         width: 100%;
         display: flex;
         justify-content: space-around;
@@ -142,6 +143,11 @@ body,html{
     }
     .label {
         font-size: 1.5rem;
+    }
+    .progress-bar{
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
     }
     .progress-bar span[role="progressbar"] {
         
@@ -164,6 +170,7 @@ body,html{
         gap: 1rem;
     }
     #desctime{
+        /* background-color: rebeccapurple; */
         display: flex;
         flex-direction: column;
         align-items: start;
