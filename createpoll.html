@@ -24,10 +24,10 @@
         <h2>Thorient</h2>
         <div>
           <ul id="nav-itms">
-            <li><a href="">Home</a></li>
-            <li><a href="">Create poll</a></li>
-            <li><a href="">Explore polls</a></li>
-            <li><a href="">Blog</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="createpoll.html">Create poll</a></li>
+            <li><a href="explore.html">Explore polls</a></li>
+            <li><a href="blogs.html">Blog</a></li>
           </ul>
         </div>
         <div id="menu">
@@ -37,10 +37,10 @@
       <div id="side-bar">
         <i class="ri-close-fill"></i>
         <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">Create Poll</a></li>
-          <li><a href="">Explore</a></li>
-          <li><a href="">Blog</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="createpoll.html">Create Poll</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="blogs.html">Blog</a></li>
         </ul>
       </div>
       <div id="overlay"></div>
@@ -63,50 +63,42 @@
         <div id="form">
           <form action="">
             <div id="create-poll">
-              <div id="poll-type">
-                <div>
-                  <input type="radio" name="pollType" />
-                  <label for="question">One-Pick Poll</label>
-                </div>
-                <div>
-                  <input type="radio" name="pollType" />
-                  <label for="question">Multi-Choice Poll</label>
-                </div>
-              </div>
               <div id="questn">
                 <fieldset aria-hidden="true">
                   <textarea
-                    rows="3"
+                    rows="5"
                     id="question"
-                    placeholder="What is your question?"
+                    placeholder="type here..."
                   ></textarea>
                   <legend><span>What is your question?</span></legend>
                 </fieldset>
               </div>
               <!-- option  -->
 
-              <div class="poll_input">
-                <label for="option1">Option 1</label>
-                <div class="input-container">
-                  <input
-                    type="text"
-                    class="optns"
-                    id="option1"
-                    placeholder="enter the option"
-                  />
-                  <i class="ri-close-fill"></i>
+              <div id="optnsContainer">
+                <div class="poll_input">
+                  <label for="option1">Option 1</label>
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      class="optns"
+                      id="option1"
+                      placeholder="enter the option"
+                    />
+                    <i class="ri-close-fill"></i>
+                  </div>
                 </div>
-              </div>
-              <div class="poll_input">
-                <label for="option2">Option 2</label>
-                <div class="input-container">
-                  <input
-                    type="text"
-                    class="optns"
-                    id="option2"
-                    placeholder="enter the option"
-                  />
-                  <i class="ri-close-fill"></i>
+                <div class="poll_input">
+                  <label for="option2">Option 2</label>
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      class="optns"
+                      id="option2"
+                      placeholder="enter the option"
+                    />
+                    <i class="ri-close-fill"></i>
+                  </div>
                 </div>
               </div>
               <div id="new-option">
@@ -116,7 +108,6 @@
           </form>
         </div>
         <div id="formBtns">
-          <button class="disabled">Preview</button>
           <button class="disabled">Create Poll</button>
         </div>
       </div>
@@ -147,6 +138,6 @@
         <em>Made with 💖</em>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="createPoll.js"></script>
   </body>
 </html>
