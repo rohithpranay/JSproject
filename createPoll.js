@@ -65,7 +65,14 @@ function handleSubmit(event) {
   const question = document.getElementById("question").value;
 
   const options = Array.from(document.querySelectorAll(".optns")).map(
-    (input) => input.value
+    (input) => {
+      let optnvotes = 0;
+      let val = input.value;
+      return {
+        val,
+        optnvotes,
+      };
+    }
   );
   const now = new Date();
   const hours = now.getHours();
@@ -82,6 +89,7 @@ function handleSubmit(event) {
     time: time,
     votes: votes,
     id: id.length + 1,
+    inputId: ["input" + id.length + 1, "input" + id.length + 2],
   };
 
   const existingPolls = JSON.parse(localStorage.getItem("polls")) || [];

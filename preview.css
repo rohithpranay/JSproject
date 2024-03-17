@@ -58,6 +58,7 @@ body,html{
 }
 .progress-bar{
     /* padding: 3rem; */
+
     display: flex;
     flex-direction: column;
 }
@@ -67,7 +68,23 @@ body,html{
     height: 1.4rem;
     width: 30rem;
     border-radius: 1rem;
-    background-color: #ccc;
+    background-color: #ccc
+  }
+  .dynProgress1{
+    /* height: 100%; */
+    height: 1rem !important;
+    width: 0%;
+    display: inline-block;
+    border-radius: 1rem;
+    background-color: #3F55AC;
+  }
+  .dynProgress2{
+    /* height: 100%; */
+    height: 1rem !important;
+    width: 0%;
+    display: inline-block;
+    border-radius: 1rem;
+    background-color: #3F55AC;
   }
   .progress-bar:nth-child(2){
     margin-top: 2rem;
@@ -94,6 +111,70 @@ body,html{
     color: #696767;
 }
 
+/* Style the modal */
+.modal {
+    width: 100%;
+    height: 100%; 
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #888;
+    width: 30%;
+    height: 30%; 
+  }
+  .modal-content p{
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .modal-content button{
+    font-size: 2rem;
+    font-weight: 700;
+    margin:2rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #3F55AC;
+    color: #fff;
+  }
+  #confirmationModal{
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Close button */
+  .close {
+    align-self: end;
+    color: #aaa;
+    float: right;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+
 #footer {
     /* height: 40rem; */
     width: 100%;
@@ -102,7 +183,13 @@ body,html{
 /* For mobile devices */
 @media only screen and (max-width: 600px) {
     
+    #main {
+        height: 100%;
+        width: 100%;
+        padding-top: 5rem;
+    }
     #main-content{
+        
         height: 100%;
         width: 100%;
         display: flex;
@@ -112,7 +199,7 @@ body,html{
     
     #container{
         width: 90%;
-        height: 50%;
+        height: 40%;
         /* width: 400px; */
         background-color: #fff;
         border-radius: 6px;
@@ -122,49 +209,51 @@ body,html{
         transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
-        padding: 1rem;
+        /* padding: 2rem 3rem; */
         color: #333;
     }
     
     #ques h2{
         /* background-color: red; */
         font-size: 2.5rem;
-        margin: 1rem;
+        margin: 2rem 0 1rem;
         font-weight: 700;
         padding: 1rem 0;
     }
     .opts{
-        padding: 3rem;
-        height: 20%;
+        height: 15%;
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        /* margin-right: 10px; */
+        margin-right: 10px;
     }
     .radio-input input{
-        height: 15px;
-        width:15px;
+        height: 23px;
+        width:18px;
     }
     .label {
-        font-size: 1.5rem;
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem;
+        /* color: red;  */
     }
     .progress-bar{
-        padding: 3rem;
+        /* padding: 3rem; */
         display: flex;
         flex-direction: column;
     }
     .progress-bar span[role="progressbar"] {
         
         display: inline-block;
-        height: 1.2rem;
+        height: 1.4rem;
         width: 20rem;
+        margin-bottom: 0.4rem;
         border-radius: 1rem;
         background-color: #ccc;
       }
       .progress-bar:nth-child(2){
         margin-top: 2rem;
-        font-size: 1.2rem;
+        font-size: 1.2rem !important;
       }
       
     .opts-label{
@@ -175,22 +264,86 @@ body,html{
         gap: 1rem;
     }
     #desctime{
-        /* background-color: rebeccapurple; */
+        margin-top: 3rem;
         display: flex;
         flex-direction: column;
         align-items: start;
-
+        justify-content: space-between;
     }
     
     #desctime p{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: 400;
         padding: 1rem 0;
         color: #696767;
     }
     
+    /* Style the modal */
+    .modal {
+        width: 100%;
+        height: 100%; 
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 50%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        /* overflow: auto;  */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+      
+    
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; 
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #888;
+        width: 80%;
+        height: 30%; 
+      }
+      .modal-content p{
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      .modal-content button{
+        font-size: 2rem;
+        font-weight: 700;
+        margin:2rem;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #3F55AC;
+        color: #fff;
+      }
+      #confirmationModal{
+        height: 100%;
+        width: 100%;
+      }
+      
+      /* Close button */
+      .close {
+        align-self: end;
+        color: #aaa;
+        float: right;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+    
     #footer {
-        height: 50rem;
+        /* height: 40rem; */
         width: 100%;
     }
     
@@ -228,4 +381,32 @@ body,html{
         font-size: 1.5rem;
         padding: 1rem 0;
     }
+    .modal {
+        width: 100%;
+        height: 100%; 
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 50%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        /* overflow: auto;  */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+    
+    .modal-content {
+    width: 60%; /* Adjust the width for tablets */
+    height: auto; /* Allow content to dictate height */
+    margin: 20% auto; /* Adjust margin for tablets */
+    padding: 1rem;
+  }
+
+  .modal-content p {
+    font-size: 1.8rem; /* Adjust font size for tablets */
+  }
+
+  .modal-content button {
+    font-size: 1.8rem; /* Adjust font size for tablets */
+    margin: 1rem;
+  }
 }
