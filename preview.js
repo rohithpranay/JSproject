@@ -17,7 +17,7 @@ if (find) {
         <div class="opts">
             <div class="opts-label">
                 <div class="radio-input">
-                    <input type="radio" id="" value="" />
+                    <input type="radio" name='vote' value="" />
                 </div>
                 <div class="label">
                     <label for="kjbj">${find.options[0]}</label>
@@ -36,7 +36,7 @@ if (find) {
         <div class="opts">
             <div class="opts-label">
                 <div class="radio-input">
-                    <input type="radio" id="" value="" />
+                    <input type="radio" name='vote' value="" />
                 </div>
                 <div class="label">
                     <label for="kjbj">${find.options[1]}</label>

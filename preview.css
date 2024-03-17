@@ -19,7 +19,7 @@ body,html{
 
 #container{
     width: 40%;
-    height: 60%;
+    height: 50%;
     /* width: 400px; */
     background-color: #fff;
     border-radius: 6px;
@@ -40,7 +40,7 @@ body,html{
     font-weight: 700;
     padding: 1rem 0;
 }
-#opts{
+.opts{
     height: 25%;
     width: 100%;
     display: flex;
@@ -53,14 +53,19 @@ body,html{
     width:18px;
 }
 .label {
-    font-size: 2.6rem;
-    
+    font-size: 2.5rem !important;
+    /* color: red;  */
+}
+.progress-bar{
+    /* padding: 3rem; */
+    display: flex;
+    flex-direction: column;
 }
 .progress-bar span[role="progressbar"] {
     
     display: inline-block;
     height: 1.4rem;
-    width: 28rem;
+    width: 30rem;
     border-radius: 1rem;
     background-color: #ccc;
   }
