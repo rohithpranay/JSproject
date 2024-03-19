@@ -16,7 +16,7 @@ if (find) {
     <input type="radio" id=${find.inputId[0]} name='vote1' value="" />
     </div>
     <div class="label">
-    <label for="vote1">${find.options[0].val}</label>
+    <label for="${find.inputId[0]}">${find.options[0].val}</label>
     </div>
     </div>
     <div class="progress-bar">
@@ -37,7 +37,7 @@ if (find) {
     <input type="radio" id=${find.inputId[1]} name='vote2' value="" />
     </div>
     <div class="label">
-    <label for="vote2">${find.options[1].val}</label>
+    <label for="${find.inputId[1]}">${find.options[1].val}</label>
     </div>
     </div>
     <div class="progress-bar">
@@ -62,15 +62,14 @@ if (find) {
   console.log("Poll with ID", id, "not found.");
 }
 
-let input1 = document.getElementById("input01");
-console.log(input1);
+// Now, select the dynamically added elements
+let input1 = document.getElementById(find.inputId[0]);
+let input2 = document.getElementById(find.inputId[1]);
 let pVotes = document.querySelector("#desctime p.voteCounter");
-console.log(pVotes);
-let input2 = document.getElementById("input02");
-console.log(input2);
 let modal = document.getElementById("confirmationModal");
 let closeBtn = document.querySelector(".modal-content .close");
 
+// Attach event listeners
 input1.addEventListener("click", function () {
   if (input1.checked) {
     modal.style.display = "block";
