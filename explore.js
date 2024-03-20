@@ -8,9 +8,11 @@ let timeArr = [
 
 for (let i of pollArr) {
   let t = i.time.split(":");
+  // console.log(t);
   let elem = document.createElement("div");
   let time = timeArr[0] * 60 + timeArr[1] - (t[0] * 60 + t[1]);
   let label = time >= 90 ? "Expired" : "Ongoing";
+  // console.log(time);
   let html = `
     <a href="preview.html">
         <div class="label"><span>${label}</span></div>

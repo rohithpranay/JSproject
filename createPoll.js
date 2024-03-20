@@ -3,9 +3,10 @@ const questionInput = document.getElementById("question");
 const option1Input = document.getElementById("option1");
 const option2Input = document.getElementById("option2");
 const newOpt = document.querySelector("#new-option p");
+let count = document.querySelectorAll(".poll_input");
 
 newOpt.addEventListener("click", function () {
-  let count = document.querySelectorAll(".poll_input").length + 1;
+  count = count.length + 1;
   if (option1Input.value.trim() !== "" && option2Input.value.trim() !== "") {
     let newOptionHTML = `
       <div class="poll_input"> <!-- Add the poll_input class here -->
@@ -55,6 +56,14 @@ option2Input.addEventListener("input", updateButtons);
 
 updateButtons();
 
+function inputID(count) {
+  let arr = [];
+  for (let i = 1; i <= count; i++) {
+    arr.push("input" + i);
+  }
+  return arr;
+}
+
 // Function to handle form submission
 function handleSubmit(event) {
   event.preventDefault();
@@ -66,12 +75,14 @@ function handleSubmit(event) {
 
   const options = Array.from(document.querySelectorAll(".optns")).map(
     (input) => {
-      let optnvotes = 0;
-      let val = input.value;
-      return {
-        val,
-        optnvotes,
-      };
+      if (input.value !== undefined) {
+        let optnvotes = 0;
+        let val = input.value;
+        return {
+          val,
+          optnvotes,
+        };
+      }
     }
   );
   const now = new Date();
@@ -83,13 +94,14 @@ function handleSubmit(event) {
 
   const time = `${hours}:${minutes}:${seconds}`;
   const poll = {
-    pollType: pollType,
+    // pollType: pollType,
     question: question,
     options: options,
     time: time,
     votes: votes,
     id: id.length + 1,
-    inputId: ["input" + id.length + 1, "input" + id.length + 2],
+    // inputId: ["input" + id.length + 1, "input" + id.length + 2],
+    inputId: inputID(count),
   };
 
   const existingPolls = JSON.parse(localStorage.getItem("polls")) || [];
