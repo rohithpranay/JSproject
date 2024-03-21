@@ -3,13 +3,14 @@ const questionInput = document.getElementById("question");
 const option1Input = document.getElementById("option1");
 const option2Input = document.getElementById("option2");
 const newOpt = document.querySelector("#new-option p");
-let count = document.querySelectorAll(".poll_input");
+let count = document.querySelectorAll(".poll_input").length; // Initialize count correctly
 
 newOpt.addEventListener("click", function () {
-  count = count.length + 1;
   if (option1Input.value.trim() !== "" && option2Input.value.trim() !== "") {
+    count++; // Increment count only when adding a new option
+    console.log(count);
     let newOptionHTML = `
-      <div class="poll_input"> <!-- Add the poll_input class here -->
+      <div class="poll_input"> 
         <label for="option${count}">Option ${count}</label>
         <div class="input-container">
           <input
@@ -32,12 +33,27 @@ newOpt.addEventListener("click", function () {
 });
 
 function areInputsNotEmpty() {
-  return (
-    questionInput.value.trim() !== "" &&
-    option1Input.value.trim() !== "" &&
-    option2Input.value.trim() !== ""
-  );
+  if (questionInput.value.trim() === "") {
+    return false;
+  }
+
+  const optionInputs = document.querySelectorAll(".optns");
+  console.log(optionInputs);
+  for (let i = 0; i < optionInputs.length; i++) {
+    // Ensure that only input elements are considered
+    if (optionInputs[i].tagName.toLowerCase() !== "input") {
+      continue;
+    }
+
+    const optionValue = optionInputs[i].value.trim();
+    if (optionValue === "") {
+      return false;
+    }
+  }
+
+  return true; 
 }
+
 function updateButtons() {
   if (areInputsNotEmpty()) {
     createPollBtn.classList.remove("disabled");
@@ -59,7 +75,7 @@ updateButtons();
 function inputID(count) {
   let arr = [];
   for (let i = 1; i <= count; i++) {
-    arr.push("input" + i);
+    arr.push("option" + i); // Corrected input ID generation
   }
   return arr;
 }
