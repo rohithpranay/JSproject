@@ -1,16 +1,41 @@
+// Selecting elements
 const createPollBtn = document.querySelector("#formBtns button");
 const questionInput = document.getElementById("question");
 const option1Input = document.getElementById("option1");
 const option2Input = document.getElementById("option2");
+const closeBtn = document.querySelectorAll(".close");
 const newOpt = document.querySelector("#new-option p");
-let count = document.querySelectorAll(".poll_input").length; // Initialize count correctly
 
+// Event listener for closing options
+const optnsContainer = document.getElementById("optnsContainer");
+optnsContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("close")) {
+    event.target.parentElement.parentElement.remove();
+    updateButtons();
+    const optns = document.querySelectorAll(".poll_input");
+    let count = 3;
+    optns.forEach((element, index) => {
+      if (index >= 2) {
+        element.setAttribute("id", count);
+        element.children[0].textContent = `Option ${count}`;
+        element.children[0].setAttribute("for", `option${count}`);
+        element.children[1].children[0].setAttribute("id", `option${count}`);
+        count++;
+      }
+    });
+  }
+});
+
+// Event listener for adding new options
 newOpt.addEventListener("click", function () {
+  let count = document.querySelectorAll(".poll_input").length;
+
   if (option1Input.value.trim() !== "" && option2Input.value.trim() !== "") {
-    count++; // Increment count only when adding a new option
-    console.log(count);
+    count++;
+
+    // Generating HTML for new option
     let newOptionHTML = `
-      <div class="poll_input"> 
+      <div id="opt-${count}" class="poll_input"> 
         <label for="option${count}">Option ${count}</label>
         <div class="input-container">
           <input
@@ -19,26 +44,25 @@ newOpt.addEventListener("click", function () {
             id="option${count}"
             placeholder="enter the option"
           />
-          <i class="ri-close-fill"></i>
+          <i class="ri-close-fill close"></i>
         </div>
       </div>`;
 
-    // Create a temporary container to hold the new option HTML
     let tempContainer = document.createElement("div");
     tempContainer.innerHTML = newOptionHTML;
 
-    // Append the new option HTML to the actual container
     document.getElementById("optnsContainer").appendChild(tempContainer);
   }
 });
 
+// Function to check if inputs are not empty and update buttons accordingly
 function areInputsNotEmpty() {
   if (questionInput.value.trim() === "") {
     return false;
   }
 
   const optionInputs = document.querySelectorAll(".optns");
-  console.log(optionInputs);
+
   for (let i = 0; i < optionInputs.length; i++) {
     // Ensure that only input elements are considered
     if (optionInputs[i].tagName.toLowerCase() !== "input") {
@@ -51,9 +75,10 @@ function areInputsNotEmpty() {
     }
   }
 
-  return true; 
+  return true;
 }
 
+// Function to update buttons based on input status
 function updateButtons() {
   if (areInputsNotEmpty()) {
     createPollBtn.classList.remove("disabled");
@@ -66,12 +91,14 @@ function updateButtons() {
   }
 }
 
+// Event listeners for input elements
 questionInput.addEventListener("input", updateButtons);
 option1Input.addEventListener("input", updateButtons);
 option2Input.addEventListener("input", updateButtons);
 
 updateButtons();
 
+// Function to generate input IDs based on count
 function inputID(count) {
   let arr = [];
   for (let i = 1; i <= count; i++) {
@@ -85,10 +112,9 @@ function handleSubmit(event) {
   event.preventDefault();
 
   const pollType = document.querySelector("#poll-type");
-  console.log(pollType);
-
   const question = document.getElementById("question").value;
 
+  // Mapping option inputs to option objects
   const options = Array.from(document.querySelectorAll(".optns")).map(
     (input) => {
       if (input.value !== undefined) {
@@ -101,6 +127,8 @@ function handleSubmit(event) {
       }
     }
   );
+
+  // Generating current time
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();
@@ -109,23 +137,25 @@ function handleSubmit(event) {
   let votes = 0;
 
   const time = `${hours}:${minutes}:${seconds}`;
+
+  // Creating poll object
   const poll = {
-    // pollType: pollType,
     question: question,
     options: options,
     time: time,
     votes: votes,
     id: id.length + 1,
-    // inputId: ["input" + id.length + 1, "input" + id.length + 2],
-    inputId: inputID(count),
+    inputId: inputID(count), // Generating input IDs
   };
 
+  // Retrieving existing polls from local storage
   const existingPolls = JSON.parse(localStorage.getItem("polls")) || [];
 
+  // Adding new poll to existing polls
   existingPolls.push(poll);
 
+  // Saving updated polls to local storage
   localStorage.setItem("polls", JSON.stringify(existingPolls));
-
   document.querySelector("form").reset();
 
   alert("Poll created successfully");
