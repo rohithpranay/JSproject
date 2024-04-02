@@ -6,6 +6,7 @@ const option2Input = document.getElementById("option2");
 const closeBtn = document.querySelectorAll(".close");
 const newOpt = document.querySelector("#new-option p");
 
+let count = document.querySelectorAll(".poll_input").length;
 // Event listener for closing options
 const optnsContainer = document.getElementById("optnsContainer");
 optnsContainer.addEventListener("click", (event) => {
@@ -13,14 +14,17 @@ optnsContainer.addEventListener("click", (event) => {
     event.target.parentElement.parentElement.remove();
     updateButtons();
     const optns = document.querySelectorAll(".poll_input");
-    let count = 3;
+    optnsCount = 3;
     optns.forEach((element, index) => {
       if (index >= 2) {
-        element.setAttribute("id", count);
-        element.children[0].textContent = `Option ${count}`;
-        element.children[0].setAttribute("for", `option${count}`);
-        element.children[1].children[0].setAttribute("id", `option${count}`);
-        count++;
+        element.setAttribute("id", optnsCount);
+        element.children[0].textContent = `Option ${optnsCount}`;
+        element.children[0].setAttribute("for", `option${optnsCount}`);
+        element.children[1].children[0].setAttribute(
+          "id",
+          `option${optnsCount}`
+        );
+        optnsCount++;
       }
     });
   }
@@ -28,30 +32,33 @@ optnsContainer.addEventListener("click", (event) => {
 
 // Event listener for adding new options
 newOpt.addEventListener("click", function () {
-  let count = document.querySelectorAll(".poll_input").length;
+  if (areInputsNotEmpty()) {
+    count = document.querySelectorAll(".poll_input").length;
+    updateButtons();
 
-  if (option1Input.value.trim() !== "" && option2Input.value.trim() !== "") {
-    count++;
+    if (option1Input.value.trim() !== "" && option2Input.value.trim() !== "") {
+      count++;
 
-    // Generating HTML for new option
-    let newOptionHTML = `
+      // Generating HTML for new option
+      let newOptionHTML = `
       <div id="opt-${count}" class="poll_input"> 
-        <label for="option${count}">Option ${count}</label>
-        <div class="input-container">
-          <input
-            type="text"
-            class="optns"
-            id="option${count}"
-            placeholder="enter the option"
-          />
-          <i class="ri-close-fill close"></i>
-        </div>
+      <label for="option${count}">Option ${count}</label>
+      <div class="input-container">
+      <input
+      type="text"
+      class="optns"
+      id="option${count}"
+      placeholder="enter the option"
+      />
+      <i class="ri-close-fill close"></i>
+      </div>
       </div>`;
 
-    let tempContainer = document.createElement("div");
-    tempContainer.innerHTML = newOptionHTML;
+      let tempContainer = document.createElement("div");
+      tempContainer.innerHTML = newOptionHTML;
 
-    document.getElementById("optnsContainer").appendChild(tempContainer);
+      document.getElementById("optnsContainer").appendChild(tempContainer);
+    }
   }
 });
 
@@ -64,11 +71,7 @@ function areInputsNotEmpty() {
   const optionInputs = document.querySelectorAll(".optns");
 
   for (let i = 0; i < optionInputs.length; i++) {
-    // Ensure that only input elements are considered
-    if (optionInputs[i].tagName.toLowerCase() !== "input") {
-      continue;
-    }
-
+    if (optionInputs[i].tagName !== "INPUT") continue;
     const optionValue = optionInputs[i].value.trim();
     if (optionValue === "") {
       return false;
@@ -110,55 +113,55 @@ function inputID(count) {
 // Function to handle form submission
 function handleSubmit(event) {
   event.preventDefault();
+  if (areInputsNotEmpty()) {
+    const question = document.getElementById("question").value;
 
-  const pollType = document.querySelector("#poll-type");
-  const question = document.getElementById("question").value;
-
-  // Mapping option inputs to option objects
-  const options = Array.from(document.querySelectorAll(".optns")).map(
-    (input) => {
-      if (input.value !== undefined) {
-        let optnvotes = 0;
-        let val = input.value;
-        return {
-          val,
-          optnvotes,
-        };
+    // Mapping option inputs to option objects
+    const options = Array.from(document.querySelectorAll(".optns")).map(
+      (input) => {
+        if (input.value !== undefined) {
+          let optnvotes = 0;
+          let val = input.value;
+          return {
+            val,
+            optnvotes,
+          };
+        }
       }
-    }
-  );
+    );
 
-  // Generating current time
-  const now = new Date();
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
-  const seconds = now.getSeconds();
-  let id = JSON.parse(localStorage.getItem("polls")) || [];
-  let votes = 0;
+    // Generating current time
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    let id = JSON.parse(localStorage.getItem("polls")) || [];
+    let votes = 0;
 
-  const time = `${hours}:${minutes}:${seconds}`;
+    const time = `${hours}:${minutes}:${seconds}`;
 
-  // Creating poll object
-  const poll = {
-    question: question,
-    options: options,
-    time: time,
-    votes: votes,
-    id: id.length + 1,
-    inputId: inputID(count), // Generating input IDs
-  };
+    // Creating poll object
+    const poll = {
+      question: question,
+      options: options,
+      time: time,
+      votes: votes,
+      id: id.length + 1,
+      inputId: inputID(count),
+    };
 
-  // Retrieving existing polls from local storage
-  const existingPolls = JSON.parse(localStorage.getItem("polls")) || [];
+    // Retrieving existing polls from local storage
+    const existingPolls = JSON.parse(localStorage.getItem("polls")) || [];
 
-  // Adding new poll to existing polls
-  existingPolls.push(poll);
+    // Adding new poll to existing polls
+    existingPolls.push(poll);
 
-  // Saving updated polls to local storage
-  localStorage.setItem("polls", JSON.stringify(existingPolls));
-  document.querySelector("form").reset();
+    // Saving updated polls to local storage
+    localStorage.setItem("polls", JSON.stringify(existingPolls));
+    document.querySelector("form").reset();
 
-  alert("Poll created successfully");
+    alert("Poll created successfully");
+  }
 }
 
 createPollBtn.addEventListener("click", handleSubmit);
